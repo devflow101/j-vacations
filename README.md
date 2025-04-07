@@ -1,36 +1,141 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# J Vacations - Travel Agency Website
 
-## Getting Started
+A modern, SEO-optimized travel agency website built with Next.js and TailwindCSS.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Responsive design that works on all devices
+- SEO optimized with meta tags and structured data
+- Modern UI with smooth animations
+- Easy-to-update content structure
+- Accessibility compliant
+- Performance optimized
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js 14
+- **Styling:** TailwindCSS
+- **Language:** TypeScript
+- **SEO:** Built-in meta tags and JSON-LD
+- **Images:** Next.js Image Optimization
+
+## 📁 Project Structure
+
+```
+j-vacations/
+├── src/
+│   ├── app/              # Next.js app router files
+│   │   ├── layout.tsx    # Root layout with metadata
+│   │   └── page.tsx      # Homepage component
+│   ├── components/       # Reusable components
+│   │   ├── DestinationCard.tsx
+│   │   ├── ServiceCard.tsx
+│   │   ├── ImageWithFallback.tsx
+│   │   └── JsonLd.tsx    # SEO structured data
+│   └── types/           # TypeScript type definitions
+├── public/
+│   └── images/          # Static images
+└── package.json         # Project dependencies
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**
+```bash
+git clone [repository-url]
+cd j-vacations
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies**
+```bash
+npm install
+```
 
-## Learn More
+3. **Run development server**
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Build for production**
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📝 Making Changes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding New Destinations
 
-## Deploy on Vercel
+Add new destinations in `src/app/page.tsx`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+const destinations = [
+  {
+    title: "New Destination",
+    image: "/images/destinations/new-destination.jpg",
+    description: "Description of the new destination",
+    duration: "X Nights / Y Days",
+    price: "Contact for Price"
+  },
+  // ... existing destinations
+]
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Updating Services
+
+Modify services in `src/app/page.tsx`:
+
+```typescript
+const services = [
+  {
+    title: "New Service",
+    description: "Description of the new service",
+    icon: "🎯"
+  },
+  // ... existing services
+]
+```
+
+## 🎨 Customizing Colors
+
+The website uses the following brand colors:
+- Primary Blue: #2196F3 (Wave)
+- Navy: #1a365d (Text)
+- Gold: #FFD700 (Sun)
+
+To modify colors, update the color classes in the components or add new colors in `tailwind.config.js`.
+
+## 📱 Responsive Design
+
+The website is responsive with the following breakpoints:
+- Mobile: < 768px
+- Tablet: 768px - 1024px
+- Desktop: > 1024px
+
+## 🔍 SEO Configuration
+
+SEO settings can be modified in:
+- `src/app/layout.tsx` - Meta tags and general SEO
+- `src/components/JsonLd.tsx` - Structured data
+
+## 📈 Performance Optimization
+
+- Images are optimized using Next.js Image component
+- Fonts are preloaded
+- Components use proper lazy loading
+- CSS is purged in production
+
+## 🤝 Contributing
+
+1. Create a feature branch
+2. Make your changes
+3. Submit a pull request
+
+## 📄 License
+
+[Your License Here]
+
+## 📞 Contact
+
+For any queries, contact:
+- Phone: +91 77078 12574
+- Instagram: @j_vacations2023

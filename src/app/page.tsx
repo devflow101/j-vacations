@@ -1,103 +1,179 @@
 import Image from "next/image";
+import DestinationCard from '../components/DestinationCard'
+import ServiceCard from '../components/ServiceCard'
+
+const destinations = [
+  {
+    title: "South American Delights",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%232196F3'/%3E%3Cpath d='M400,150 L500,400 L300,400 Z' fill='%23FFD700' opacity='0.8'/%3E%3Ccircle cx='400' cy='300' r='50' fill='white' opacity='0.6'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EMachu Picchu%3C/text%3E%3C/svg%3E",
+    description: "Experience Machu Picchu, Iguazu Falls, and the vibrant culture of South America",
+    duration: "12 Nights / 13 Days",
+    price: "Contact for Price"
+  },
+  {
+    title: "Mesmerizing Peru",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23009688'/%3E%3Cpath d='M200,200 L600,200 L400,500 Z' fill='%23FFD700' opacity='0.8'/%3E%3Ccircle cx='400' cy='250' r='60' fill='white' opacity='0.6'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3ESacred Valley%3C/text%3E%3C/svg%3E",
+    description: "Ancient Incan ruins, Sacred Valley, and the colorful markets of Cusco",
+    duration: "10 Nights / 11 Days",
+    price: "Contact for Price"
+  },
+  {
+    title: "Incredible Bhutan",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%234CAF50'/%3E%3Cpath d='M300,100 L500,100 L400,300 Z' fill='%23FFD700' opacity='0.8'/%3E%3Cpath d='M200,200 L600,200 L400,500 Z' fill='white' opacity='0.6'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3ETiger's Nest%3C/text%3E%3C/svg%3E",
+    description: "Visit Tiger's Nest Monastery, experience Buddhist culture and pristine landscapes",
+    duration: "4 Nights / 5 Days",
+    price: "Contact for Price"
+  },
+  {
+    title: "Exotic Koh Samui",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%2303A9F4'/%3E%3Cpath d='M0,400 Q400,350 800,400 L800,600 L0,600 Z' fill='%23FFD700' opacity='0.8'/%3E%3Ccircle cx='600' cy='150' r='60' fill='%23FFD700' opacity='0.8'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EBeach Paradise%3C/text%3E%3C/svg%3E",
+    description: "Crystal clear waters, pristine beaches, and Thai hospitality",
+    duration: "5 Nights / 6 Days",
+    price: "Contact for Price"
+  },
+  {
+    title: "Mystical Karnataka",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23FF5722'/%3E%3Cpath d='M300,100 C400,150 400,250 300,300 C400,350 400,450 300,500' fill='none' stroke='white' stroke-width='20' opacity='0.6'/%3E%3Ccircle cx='400' cy='300' r='80' fill='%23FFD700' opacity='0.4'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EMysore Palace%3C/text%3E%3C/svg%3E",
+    description: "Ancient temples, coffee plantations, and royal palaces",
+    duration: "7 Days / 6 Nights",
+    price: "Contact for Price"
+  },
+  {
+    title: "Majestic Ladakh",
+    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600'%3E%3Crect width='800' height='600' fill='%23607D8B'/%3E%3Cpath d='M100,400 L300,200 L500,400 L700,200' fill='none' stroke='white' stroke-width='20' opacity='0.8'/%3E%3Ccircle cx='400' cy='250' r='60' fill='%23FFD700' opacity='0.6'/%3E%3Ctext x='400' y='500' font-family='Arial' font-size='24' fill='white' text-anchor='middle'%3EPangong Lake%3C/text%3E%3C/svg%3E",
+    description: "Himalayan landscapes, Buddhist monasteries, and high-altitude lakes",
+    duration: "6 Nights / 7 Days",
+    price: "Contact for Price"
+  }
+]
+
+const services = [
+  {
+    title: "Flight Bookings",
+    description: "International and domestic flight reservations",
+    icon: "✈️"
+  },
+  {
+    title: "Hotel Bookings",
+    description: "Luxury accommodations worldwide",
+    icon: "🏨"
+  },
+  {
+    title: "Guided Tours",
+    description: "Expert local guides and custom itineraries",
+    icon: "🗺️"
+  },
+  {
+    title: "Travel Insurance",
+    description: "Comprehensive travel protection",
+    icon: "🛡️"
+  }
+]
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main className="min-h-screen">
+      {/* Hero Section - Further reduced height */}
+      <section className="relative min-h-[60vh] flex items-center justify-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2196F3] to-[#1a365d] z-10"></div>
+        <div className="relative z-20 text-center text-white px-4 py-8">
+          <div className="w-[160px] h-[160px] mx-auto mb-6 relative overflow-hidden rounded-full">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/images/logo.png"
+              alt="J Vacations - Forever Tourism"
+              fill
+              className="object-contain"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </div>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
+            Your Journey Begins With J Vacations
+          </h1>
+          <p className="text-lg md:text-xl mb-6 text-white/90">
+            Luxury Travel | Flights | Hotels | Guided Tours
+          </p>
+          <button 
+            className="bg-[#FFD700] hover:bg-[#f7c800] text-[#1a365d] px-8 py-3 rounded-full text-lg font-semibold transition-colors shadow-lg hover:shadow-xl"
+            aria-label="View our destinations"
           >
-            Read our docs
-          </a>
+            Explore Destinations
+          </button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Featured Destinations */}
+      <section className="py-20 bg-gray-50" aria-labelledby="destinations-title">
+        <div className="container mx-auto px-4">
+          <h2 id="destinations-title" className="text-4xl font-bold text-center mb-12 text-[#1a365d]">Popular Destinations</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
+            {destinations.map((destination, index) => (
+              <article key={index} role="listitem">
+                <DestinationCard {...destination} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Services */}
+      <section className="py-20" aria-labelledby="services-title">
+        <div className="container mx-auto px-4">
+          <h2 id="services-title" className="text-4xl font-bold text-center mb-12 text-[#1a365d]">Our Services</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
+            {services.map((service, index) => (
+              <article key={index} role="listitem">
+                <ServiceCard {...service} />
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Offers */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-12">Latest Offers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Offer cards will go here */}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section className="py-20 bg-gray-50" aria-labelledby="contact-title">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h2 id="contact-title" className="text-4xl font-bold mb-8 text-[#1a365d]">Contact Us</h2>
+              <p className="text-lg mb-4 text-gray-700">Ready to start your journey? Get in touch with us today!</p>
+              <div className="space-y-4">
+                <p className="flex items-center">
+                  <span className="font-semibold mr-2 text-[#1a365d]">Phone:</span>
+                  <a 
+                    href="tel:+917707812574" 
+                    className="text-[#2196F3] hover:text-[#1a365d]"
+                    aria-label="Call us at +91 77078 12574"
+                  >
+                    +91 77078 12574
+                  </a>
+                </p>
+                <p className="flex items-center">
+                  <span className="font-semibold mr-2 text-[#1a365d]">Follow Us:</span>
+                  <a 
+                    href="https://www.instagram.com/j_vacations2023" 
+                    className="text-[#2196F3] hover:text-[#1a365d]"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Follow us on Instagram @j_vacations2023"
+                  >
+                    @j_vacations2023
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
