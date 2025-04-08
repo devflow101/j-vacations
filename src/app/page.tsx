@@ -1,6 +1,8 @@
 import Image from "next/image";
 import DestinationCard from '../components/DestinationCard'
 import ServiceCard from '../components/ServiceCard'
+import Navbar from '../components/Navbar'
+import HeroSlider from '../components/HeroSlider'
 
 const destinations = [
   {
@@ -73,33 +75,8 @@ const services = [
 export default function Home() {
   return (
     <main className="min-h-screen">
-      {/* Hero Section - Further reduced height */}
-      <section className="relative min-h-[60vh] flex items-center justify-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2196F3] to-[#1a365d] z-10"></div>
-        <div className="relative z-20 text-center text-white px-4 py-8">
-          <div className="w-[160px] h-[160px] mx-auto mb-6 relative overflow-hidden rounded-full">
-            <Image
-              src="/images/logo.png"
-              alt="J Vacations - Forever Tourism"
-              fill
-              className="object-contain"
-              priority
-            />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
-            Your Journey Begins With J Vacations
-          </h1>
-          <p className="text-lg md:text-xl mb-6 text-white/90">
-            Luxury Travel | Flights | Hotels | Guided Tours
-          </p>
-          <button 
-            className="bg-[#FFD700] hover:bg-[#f7c800] text-[#1a365d] px-8 py-3 rounded-full text-lg font-semibold transition-colors shadow-lg hover:shadow-xl"
-            aria-label="View our destinations"
-          >
-            Explore Destinations
-          </button>
-        </div>
-      </section>
+      <Navbar />
+      <HeroSlider />
 
       {/* Featured Destinations */}
       <section className="py-20 bg-gray-50" aria-labelledby="destinations-title">
@@ -125,16 +102,6 @@ export default function Home() {
                 <ServiceCard {...service} />
               </article>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Latest Offers */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-12">Latest Offers</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Offer cards will go here */}
           </div>
         </div>
       </section>
