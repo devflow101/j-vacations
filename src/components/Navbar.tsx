@@ -2,117 +2,116 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Array of inspirational travel quotes
+const quotes = [
+  {
+    text: "Travel is the only thing you buy that makes you richer.",
+    author: "Anonymous"
+  },
+  {
+    text: "Life is either a daring adventure or nothing at all.",
+    author: "Helen Keller"
+  },
+  {
+    text: "Take only memories, leave only footprints.",
+    author: "Chief Seattle"
+  },
+  {
+    text: "The world is a book and those who do not travel read only one page.",
+    author: "St. Augustine"
+  },
+  {
+    text: "Travel far, travel wide, travel deep.",
+    author: "Anonymous"
+  },
+  {
+    text: "Adventure may hurt you, but monotony will kill you.",
+    author: "Anonymous"
+  },
+  {
+    text: "Not all who wander are lost.",
+    author: "J.R.R. Tolkien"
+  },
+  {
+    text: "To travel is to live.",
+    author: "Hans Christian Andersen"
+  },
+  {
+    text: "Travel makes one modest. You see what a tiny place you occupy in the world.",
+    author: "Gustave Flaubert"
+  },
+  {
+    text: "The journey, not the arrival, matters.",
+    author: "T.S. Eliot"
+  }
+];
 
 const Navbar = () => {
-  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
+  const [fadeIn, setFadeIn] = useState(true);
 
-  const toggleDropdown = () => {
-    setDropdownVisible(!dropdownVisible);
-  };
+  // Change quote every 8 seconds
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Start fade out
+      setFadeIn(false);
+      
+      // After fade out completes, change the quote and start fade in
+      setTimeout(() => {
+        setCurrentQuoteIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+        setFadeIn(true);
+      }, 500); // This should match the CSS transition time
+      
+    }, 8000);
+    
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const currentQuote = quotes[currentQuoteIndex];
 
   return (
-    <header className="w-full">
-      {/* Top Banner */}
-      <div className="w-full bg-gradient-to-r from-[#1a365d] via-[#2563eb] to-[#1a365d] text-white py-3 px-4">
-        <div className="container mx-auto flex flex-col md:flex-row justify-between items-center">
-          <div className="flex items-center space-x-2 mb-2 md:mb-0">
-            <span className="animate-pulse">🔥</span>
-            <p className="text-sm md:text-base">
-              <span className="font-bold bg-clip-text text-transparent bg-gradient-to-r from-yellow-200 to-yellow-400">
-                Worldwide Holiday Sale
-              </span>
-              <span className="mx-2">-</span>
-              <span className="font-light">Save up to</span>
-              <span className="ml-2 font-bold text-yellow-300 text-lg">73%</span>
-            </p>
+    <header className="w-full bg-white shadow-sm">
+      <div className="container mx-auto px-2 md:pl-1 md:pr-4 py-3">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          {/* Logo - Explicitly set to left */}
+          <div className="w-[200px] h-[80px] relative self-start md:self-center">
+            <Image
+              src="/images/logo.png"
+              alt="J Vacations - Forever Tourism"
+              fill
+              className="object-contain object-left"
+              priority
+            />
           </div>
-          <a 
-            href="tel:+917707812574" 
-            className="group flex items-center space-x-2 text-sm md:text-base hover:text-yellow-300 transition-colors"
+
+          {/* Travel Quotes */}
+          <div 
+            className={`transition-opacity duration-500 ease-in-out max-w-xl flex-1 text-center my-4 md:my-0 ${fadeIn ? 'opacity-100' : 'opacity-0'}`}
           >
-            <div className="flex justify-center items-center w-7 h-7 bg-yellow-500 text-[#1a365d] rounded-full animate-bounce shadow-lg">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-              </svg>
-            </div>
-            <span className="bg-yellow-500 text-[#1a365d] px-3 py-1 rounded-full font-bold group-hover:bg-yellow-400 transition-colors">
-              Call our travel experts (24*7): +91 77078 12574
-            </span>
-          </a>
+            <p className="text-lg font-light italic text-[#1a365d]">"{currentQuote.text}"</p>
+            <p className="text-sm font-medium mt-1 text-gray-600">— {currentQuote.author}</p>
+          </div>
+          
+          {/* Call Travel Experts - Fixed width */}
+          <div className="min-w-[220px] flex justify-end">
+            <a 
+              href="tel:+917707812574" 
+              className="group flex items-center space-x-2 text-sm hover:text-[#1a365d] transition-colors whitespace-nowrap"
+            >
+              <div className="flex justify-center items-center w-7 h-7 bg-[#1a365d] text-yellow-500 rounded-full animate-bounce shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </div>
+              <span className="bg-[#1a365d] text-white px-3 py-1 rounded-full font-bold group-hover:bg-[#2563eb] transition-colors">
+                Call: +91 77078 12574
+              </span>
+            </a>
+          </div>
         </div>
       </div>
-
-      {/* Main Navigation */}
-      <nav className="bg-white shadow-md">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-2">
-            {/* Logo */}
-            <div className="w-[300px] h-[150px] relative">
-              <Image
-                src="/images/logo.png"
-                alt="J Vacations - Forever Tourism"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
-
-            {/* Navigation Links */}
-            <div className="hidden md:flex items-center space-x-6">
-              <Link href="/" className="nav-link">HOME</Link>
-              <Link href="/flights" className="nav-link">FLIGHTS</Link>
-              <Link href="/destinations" className="nav-link">DESTINATIONS</Link>
-              <Link href="/holidays" className="nav-link">HOLIDAYS</Link>
-              <Link href="/tours" className="nav-link">TOURS</Link>
-              <Link href="/special-offers" className="nav-link">SPECIAL OFFERS</Link>
-              
-              {/* Contact Us Dropdown */}
-              <div className="relative group">
-                <button 
-                  onClick={toggleDropdown}
-                  onMouseEnter={() => setDropdownVisible(true)}
-                  className="nav-link flex items-center"
-                >
-                  CONTACT US
-                  <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                
-                <div 
-                  className={`absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 transition-all duration-300 transform origin-top-right ${
-                    dropdownVisible ? 'scale-100 opacity-100' : 'scale-95 opacity-0 pointer-events-none'
-                  }`}
-                  onMouseLeave={() => setDropdownVisible(false)}
-                >
-                  <div className="py-1">
-                    <Link 
-                      href="/get-quote" 
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1a365d] hover:text-white transition-colors"
-                    >
-                      Get a Quote
-                    </Link>
-                    <Link 
-                      href="/request-callback" 
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-[#1a365d] hover:text-white transition-colors"
-                    >
-                      Request a Call Back
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button className="md:hidden p-2" aria-label="Menu">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav>
     </header>
   );
 };
