@@ -2,6 +2,18 @@
 
 All notable changes to the J Vacations website project will be documented in this file.
 
+## [v0.3.0] - 2024-06-03
+
+### Added
+- Content management system with JSON files for easy editing by non-developers
+- JSON files for hero slider, travel packages, special offers, services, and contact info
+- Admin page with content overview (/admin)
+- Comprehensive content editor guide
+
+### Changed
+- Refactored components to use content from JSON files instead of hardcoded data
+- Improved maintainability for non-technical users
+
 ## [v0.2.0] - 2024-06-03
 
 ### Added
