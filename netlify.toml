@@ -6,10 +6,39 @@
   NODE_VERSION = "18"
   NPM_VERSION = "9"
   NEXT_TELEMETRY_DISABLED = "1"
+  # Optimize for Netlify
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+  # Set proper environment
+  NODE_ENV = "production"
+  # Tailwind optimization flag
+  TAILWIND_MODE = "build"
+  # For Netlify deployment
+  TARGET_PLATFORM = "netlify"
 
 # Disable cache temporarily to ensure fresh build
 [build.processing]
   skip_processing = false
+
+# Cache headers for better performance
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
 
 # Function settings for Next.js
 [functions]
