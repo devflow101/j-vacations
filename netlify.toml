@@ -15,6 +15,14 @@
 [functions]
   node_bundler = "esbuild"
 
+# Specify the branch to deploy
+[context.production]
+  base = "/"
+
+# Cache settings
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Handle static files
 [[redirects]]
   from = "/_next/static/*"
@@ -25,20 +33,4 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-# Specify the branch to deploy
-[context.production]
-  base = "/"
-
-# Cache settings
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-# Redirect all routes to Next.js
-[[redirects]]
-  from = "/*"
-  to = "/_next/static/:splat"
-  status = 200
-  force = true
-  conditions = {Path = ["/_next/static/*"]} 
+  status = 200 
