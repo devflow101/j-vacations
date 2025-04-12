@@ -22,6 +22,42 @@ console.log(`NPM version: ${execSync('npm --version').toString().trim()}`);
 // Create or verify config files
 console.log('Checking and creating necessary config files...');
 
+// Check for JsonLd.tsx component
+if (!fs.existsSync('./src/components/JsonLd.tsx') && !fs.existsSync('./src/components/JsonLd.jsx')) {
+  console.log('Creating fallback JsonLd component...');
+  const jsonLdComponent = `
+    /**
+     * JsonLd Component
+     * 
+     * Implements structured data for SEO using JSON-LD format.
+     */
+    export default function JsonLd() {
+      const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "TravelAgency",
+        "name": "J Vacations",
+        "slogan": "Forever Tourism",
+        "description": "Experience luxury travel with J Vacations.",
+        "url": "https://j-vacations.com"
+      };
+    
+      return (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      );
+    }
+  `;
+  
+  // Create the component directory if it doesn't exist
+  if (!fs.existsSync('./src/components')) {
+    fs.mkdirSync('./src/components', { recursive: true });
+  }
+  
+  fs.writeFileSync('./src/components/JsonLd.jsx', jsonLdComponent);
+}
+
 // Check if next.config.js exists
 if (!fs.existsSync('./next.config.js')) {
   console.log('Creating next.config.js...');
