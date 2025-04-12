@@ -13,52 +13,10 @@ import NewsletterSubscription from '../components/forms/NewsletterSubscription'
 import SmartBanner from '../components/forms/SmartBanner'
 import CallbackStateWrapper from '../components/CallbackStateWrapper'
 
-const specialOffers = [
-  {
-    title: "Early Summer Discount",
-    image: "/images/offers/summer-discount.jpg",
-    description: "Book now for summer travel and save up to 20% on selected destinations",
-    duration: "Valid until May 31, 2024",
-    price: "Save 20%"
-  },
-  {
-    title: "Family Package Deal",
-    image: "/images/offers/family-package.jpg",
-    description: "Kids stay and eat free at select destinations, perfect for family holidays",
-    duration: "Valid until Dec 31, 2024",
-    price: "Kids Free"
-  },
-  {
-    title: "Honeymoon Special",
-    image: "/images/offers/honeymoon-special.jpg",
-    description: "Complimentary romantic dinner and spa treatment for honeymooners",
-    duration: "Ongoing",
-    price: "Extras Included"
-  }
-];
-
-const services = [
-  {
-    title: "Flight Bookings",
-    description: "International and domestic flight reservations",
-    icon: "✈️"
-  },
-  {
-    title: "Hotel Bookings",
-    description: "Luxury accommodations worldwide",
-    icon: "🏨"
-  },
-  {
-    title: "Guided Tours",
-    description: "Expert local guides and custom itineraries",
-    icon: "🗺️"
-  },
-  {
-    title: "Travel Insurance",
-    description: "Comprehensive travel protection",
-    icon: "🛡️"
-  }
-]
+// Import content from JSON files
+import specialOffersData from '../content/specialOffers.json';
+import servicesData from '../content/services.json';
+import contactData from '../content/contactInfo.json';
 
 export default function Home() {
   return (
@@ -80,7 +38,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <h2 id="offers-title" className="text-4xl font-bold text-center mb-12 text-[#1a365d]">Special Offers</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8" role="list">
-            {specialOffers.map((offer, index) => (
+            {specialOffersData.offers.map((offer, index) => (
               <article key={index} role="listitem">
                 <DestinationCard {...offer} />
               </article>
@@ -103,7 +61,7 @@ export default function Home() {
             <p className="text-gray-600 mt-3 max-w-xl mx-auto">Comprehensive travel solutions designed for your perfect journey</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" role="list">
-            {services.map((service, index) => (
+            {servicesData.services.map((service, index) => (
               <article key={index} role="listitem">
                 <ServiceCard {...service} />
               </article>
@@ -126,35 +84,35 @@ export default function Home() {
                 <p className="flex items-center">
                   <span className="font-semibold mr-2 text-[#1a365d]">Address:</span>
                   <span className="text-gray-700">
-                    Gali No. 3, Issa Nagar, Suranussi, Jalandhar, Punjab 144027, India
+                    {contactData.address}
                   </span>
                 </p>
                 <p className="flex items-center">
                   <span className="font-semibold mr-2 text-[#1a365d]">Phone:</span>
                   <a 
-                    href="tel:+917707812574" 
+                    href={`tel:${contactData.phone}`} 
                     className="text-[#2196F3] hover:text-[#1a365d]"
-                    aria-label="Call us at +91 77078 12574"
+                    aria-label={`Call us at ${contactData.phone}`}
                   >
-                    +91 77078 12574
+                    {contactData.phone}
                   </a>
                 </p>
                 <p className="flex items-center">
                   <span className="font-semibold mr-2 text-[#1a365d]">Follow Us:</span>
                   <a 
-                    href="https://www.instagram.com/j_vacations2023" 
+                    href={contactData.instagramLink} 
                     className="text-[#2196F3] hover:text-[#1a365d]"
                     target="_blank"
                     rel="noopener noreferrer"
-                    aria-label="Follow us on Instagram @j_vacations2023"
+                    aria-label={`Follow us on Instagram @${contactData.instagram}`}
                   >
-                    @j_vacations2023
+                    @{contactData.instagram}
                   </a>
                 </p>
               </div>
               <div className="mt-6">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3407.537047513098!2d75.5772873!3d31.3428799!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x391a5bb30d540f75%3A0x3873c1c3c7237ce0!2sGali%20No.%203%2C%20Issa%20Nagar%2C%20Suranussi%2C%20Jalandhar%2C%20Punjab%20144027!5e0!3m2!1sen!2sin!4v1711336547159!5m2!1sen!2sin"
+                  src={contactData.mapEmbedUrl}
                   width="100%"
                   height="300"
                   style={{ border: 0, borderRadius: '0.5rem' }}

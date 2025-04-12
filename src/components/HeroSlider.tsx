@@ -2,54 +2,27 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import slidesData from '../content/heroSlides.json';
 
-const slides = [
-  {
-    image: "/images/carousel/santorini.jpg",
-    title: "Magical Santorini",
-    subtitle: "Experience the enchanting sunsets and iconic white architecture",
-    price: "Starting from £899",
-    duration: "5 Nights"
-  },
-  {
-    image: "/images/carousel/machu-picchu.jpg",
-    title: "Mystical Machu Picchu",
-    subtitle: "Discover the ancient wonders of the Incan Empire",
-    price: "Starting from £1,299",
-    duration: "7 Nights"
-  },
-  {
-    image: "/images/carousel/dubai-atlantis.jpg",
-    title: "Luxurious Dubai",
-    subtitle: "Indulge in world-class luxury at Atlantis The Palm",
-    price: "Starting from £999",
-    duration: "6 Nights"
-  },
-  {
-    image: "/images/carousel/paris-louvre.jpg",
-    title: "Romantic Paris",
-    subtitle: "Fall in love with the City of Light",
-    price: "Starting from £599",
-    duration: "4 Nights"
-  },
-  {
-    image: "/images/carousel/bali-beach.jpg",
-    title: "Tropical Paradise Bali",
-    subtitle: "Discover pristine beaches and hidden coves",
-    price: "Starting from £799",
-    duration: "7 Nights"
-  }
-];
+// Type definition for slide
+interface Slide {
+  image: string;
+  title: string;
+  subtitle: string;
+  price: string;
+  duration: string;
+}
 
 export default function HeroSlider() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const slides: Slide[] = slidesData.slides;
 
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);

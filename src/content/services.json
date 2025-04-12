@@ -1,0 +1,24 @@
+{
+  "services": [
+    {
+      "title": "Flight Bookings",
+      "description": "International and domestic flight reservations",
+      "icon": "✈️"
+    },
+    {
+      "title": "Hotel Bookings",
+      "description": "Luxury accommodations worldwide",
+      "icon": "🏨"
+    },
+    {
+      "title": "Guided Tours",
+      "description": "Expert local guides and custom itineraries",
+      "icon": "🗺️"
+    },
+    {
+      "title": "Travel Insurance",
+      "description": "Comprehensive travel protection",
+      "icon": "🛡️"
+    }
+  ]
+} 

@@ -1,0 +1,25 @@
+{
+  "offers": [
+    {
+      "title": "Early Summer Discount",
+      "image": "/images/offers/summer-discount.jpg",
+      "description": "Book now for summer travel and save up to 20% on selected destinations",
+      "duration": "Valid until May 31, 2024",
+      "price": "Save 20%"
+    },
+    {
+      "title": "Family Package Deal",
+      "image": "/images/offers/family-package.jpg",
+      "description": "Kids stay and eat free at select destinations, perfect for family holidays",
+      "duration": "Valid until Dec 31, 2024",
+      "price": "Kids Free"
+    },
+    {
+      "title": "Honeymoon Special",
+      "image": "/images/offers/honeymoon-special.jpg",
+      "description": "Complimentary romantic dinner and spa treatment for honeymooners",
+      "duration": "Ongoing",
+      "price": "Extras Included"
+    }
+  ]
+} 

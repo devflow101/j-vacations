@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import packagesData from '../content/travelPackages.json';
 
 interface Package {
   id: number;
@@ -14,77 +15,9 @@ interface Package {
   included: string[];
 }
 
-const packages: Package[] = [
-  {
-    id: 1,
-    title: "Luxury Maldives Escape",
-    description: "Experience paradise with this all-inclusive luxury package to the Maldives",
-    duration: "7 Nights / 8 Days",
-    price: "From $3,999 per person",
-    image: "/images/packages/maldives.jpg",
-    highlights: [
-      "Overwater villa accommodation",
-      "Private beach access",
-      "Spa treatments",
-      "Snorkeling and diving",
-      "Sunset cruise"
-    ],
-    included: [
-      "Return flights",
-      "All meals and drinks",
-      "Airport transfers",
-      "Daily activities",
-      "Travel insurance"
-    ]
-  },
-  {
-    id: 2,
-    title: "European Adventure",
-    description: "Explore the best of Europe with this comprehensive tour package",
-    duration: "14 Nights / 15 Days",
-    price: "From $4,999 per person",
-    image: "/images/packages/europe.jpg",
-    highlights: [
-      "Paris, Rome, and Barcelona",
-      "Guided city tours",
-      "High-speed train travel",
-      "Local cuisine experiences",
-      "Historic landmarks"
-    ],
-    included: [
-      "International flights",
-      "4-star accommodations",
-      "Daily breakfast",
-      "City tours",
-      "Travel insurance"
-    ]
-  },
-  {
-    id: 3,
-    title: "Safari Experience",
-    description: "Witness the wonders of African wildlife on this unforgettable safari",
-    duration: "10 Nights / 11 Days",
-    price: "From $5,999 per person",
-    image: "/images/packages/safari.jpg",
-    highlights: [
-      "Game drives",
-      "Luxury tented camps",
-      "Sunrise balloon safari",
-      "Cultural village visit",
-      "Professional guides"
-    ],
-    included: [
-      "International flights",
-      "All meals and drinks",
-      "Game park fees",
-      "Airport transfers",
-      "Travel insurance"
-    ]
-  }
-];
-
 export default function TravelPackages() {
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+  const packages: Package[] = packagesData.packages;
 
   return (
     <section className="py-16 bg-white" aria-labelledby="packages-title">
