@@ -1,0 +1,32 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Specify the branch to deploy
+[context.production]
+  base = "/"
+
+# Cache settings
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Force clear the cache
+[build.processing]
+  skip_processing = false
+
+# Redirect all routes to Next.js
+[[redirects]]
+  from = "/*"
+  to = "/_next/static/:splat"
+  status = 200
+  force = true
+  conditions = {Path = ["/_next/static/*"]}
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200 
