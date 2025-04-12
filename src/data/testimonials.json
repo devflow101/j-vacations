@@ -1,0 +1,32 @@
+{
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Rajesh Kumar",
+      "rating": 5,
+      "text": "J Vacations made our honeymoon truly special! Their attention to detail and personalized service exceeded our expectations. The Maldives package they arranged was perfect.",
+      "location": "Delhi, India"
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "rating": 5,
+      "text": "Outstanding service! They planned our family trip to Dubai with such care. Every activity was well-organized, and the hotel recommendations were excellent.",
+      "location": "Mumbai, India"
+    },
+    {
+      "id": 3,
+      "name": "Amit Patel",
+      "rating": 5,
+      "text": "Best travel agency in Punjab! Their Europe tour package was comprehensive and well-priced. The team was always available to answer our questions.",
+      "location": "Jalandhar, India"
+    },
+    {
+      "id": 4,
+      "name": "Neha Singh",
+      "rating": 4,
+      "text": "Very professional service. They helped us plan a wonderful trip to Thailand. The itinerary was perfect and included all the major attractions we wanted to see.",
+      "location": "Chandigarh, India"
+    }
+  ]
+} 
