@@ -2,6 +2,17 @@
 
 All notable changes to the J Vacations website project will be documented in this file.
 
+## [v0.3.1] - 2024-06-03
+
+### Added
+- Detailed image size requirements and optimization tips in content guide
+- Specific content guidelines for each section (character limits, formatting, etc.)
+- Best practices for maintaining balanced layouts
+
+### Enhanced
+- CONTENT_EDITOR_GUIDE.md with more comprehensive instructions
+- Added recommendations for number of items in each section
+
 ## [v0.3.0] - 2024-06-03
 
 ### Added

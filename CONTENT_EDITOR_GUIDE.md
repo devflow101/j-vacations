@@ -29,6 +29,23 @@ All editable content is located in the `src/content` folder. You'll find these f
 2. Update the image path in the corresponding JSON file
    - For example, to update a carousel image, change the "image" value in `heroSlides.json`
 
+## 📏 Image Size Requirements
+
+For best performance and appearance, follow these image size guidelines:
+
+| Image Type | Recommended Size | Aspect Ratio | Format | Max File Size |
+|------------|------------------|--------------|--------|---------------|
+| Hero Carousel | 1920px × 1080px | 16:9 | JPG/WebP | 300KB |
+| Travel Packages | 800px × 600px | 4:3 | JPG/WebP | 200KB |
+| Special Offers | 800px × 600px | 4:3 | JPG/WebP | 200KB |
+
+### Tips for Image Optimization:
+- Use JPG for photos and WebP for better compression
+- Compress images before uploading using tools like TinyPNG (tinypng.com)
+- Always maintain the recommended aspect ratio
+- If an image is too large, the website will load slowly
+- Make sure all images are high quality and well-lit
+
 ## 📋 Content Format Examples
 
 ### 1. Hero Slider (heroSlides.json)
@@ -47,6 +64,13 @@ All editable content is located in the `src/content` folder. You'll find these f
   ]
 }
 ```
+
+**Content Guidelines:**
+- Title: Keep it short (2-4 words) and eye-catching
+- Subtitle: Maximum 60 characters, describe the key attraction
+- Price: Always include the currency symbol
+- Duration: Keep the format consistent (e.g., "X Nights")
+- Recommended: 3-5 slides maximum for optimal performance
 
 To add a new slide, copy one of the existing slide blocks (including the curly braces), paste it after an existing one, and edit the values.
 
@@ -78,6 +102,14 @@ To add a new slide, copy one of the existing slide blocks (including the curly b
 }
 ```
 
+**Content Guidelines:**
+- Title: Up to 30 characters
+- Description: 80-100 characters, focus on unique selling points
+- Duration: Use the format "X Nights / Y Days"
+- Price: Always specify if it's "per person" or "per couple"
+- Highlights & Included: 3-5 bullet points each, keep them concise
+- Recommended: 3-6 packages for balanced layout
+
 When adding a new package, make sure to give it a unique "id" number.
 
 ### 3. Special Offers (specialOffers.json)
@@ -97,6 +129,13 @@ When adding a new package, make sure to give it a unique "id" number.
 }
 ```
 
+**Content Guidelines:**
+- Title: Use action words and emphasize the benefit
+- Description: Maximum 100 characters, highlight the value proposition
+- Duration: Always include valid dates or time periods
+- Price: Focus on the discount or special value
+- Recommended: 3 offers for optimal layout
+
 ### 4. Services (services.json)
 
 ```json
@@ -111,6 +150,12 @@ When adding a new package, make sure to give it a unique "id" number.
   ]
 }
 ```
+
+**Content Guidelines:**
+- Title: Keep it clear and simple (2-3 words)
+- Description: 40-60 characters, explain what the service provides
+- Icon: Choose a relevant emoji that represents the service
+- Recommended: 4 or 8 services for balanced grid layout
 
 For icons, you can use emoji characters like:
 - ✈️ (airplane)
@@ -132,6 +177,13 @@ For icons, you can use emoji characters like:
 }
 ```
 
+**Content Guidelines:**
+- Address: Include the full address with postal code
+- Phone: Use international format with country code (+91)
+- Instagram: Only change if the account handle changes
+- Instagram Link: Must match the account handle
+- Map Embed URL: Only change if the office location changes
+
 ## ⚠️ Important Notes
 
 1. Always maintain the format with proper commas, quotation marks, and brackets
@@ -139,6 +191,8 @@ For icons, you can use emoji characters like:
 3. Make sure image paths are correct
 4. After each entry except the last one in a list, add a comma
 5. Text must be in quotation marks like `"this"`
+6. The website works best with the recommended number of items for each section
+7. Test all changes by viewing the website after restarting the server
 
 ## 🆘 Need Help?
 
