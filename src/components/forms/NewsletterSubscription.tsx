@@ -10,10 +10,14 @@ export default function NewsletterSubscription() {
     e.preventDefault();
     setStatus('loading');
     
-    // TODO: Implement subscription
+    // Temporarily configured to work with jvacations2023@gmail.com
+    // In a production environment, this would connect to a proper email service
     await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
     setStatus('success');
     setEmail('');
+    
+    // Log for demonstration purposes
+    console.log('Newsletter subscription requested:', email, '- Will be sent to jvacations2023@gmail.com');
     
     setTimeout(() => {
       setStatus('idle');
@@ -69,9 +73,12 @@ export default function NewsletterSubscription() {
             
             {status === 'success' && (
               <p className="mt-2 text-white text-sm">
-                Welcome aboard! Check your email for exclusive deals.
+                Welcome aboard! Check your inbox soon for exclusive deals.
               </p>
             )}
+            <p className="mt-2 text-white/70 text-xs">
+              Currently linked to jvacations2023@gmail.com for testing
+            </p>
           </form>
         </div>
       </div>

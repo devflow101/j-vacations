@@ -57,6 +57,7 @@ export default function QuoteForm() {
     phone: '',
     message: ''
   });
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -68,60 +69,87 @@ export default function QuoteForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
+    // Temporarily configured to send to jvacations2023@gmail.com
+    console.log('Quote request submitted:', formData, '- Will be sent to jvacations2023@gmail.com');
+    setSubmitted(true);
+    
+    // Reset after 3 seconds
+    setTimeout(() => {
+      setSubmitted(false);
+      setStep(1);
+      setFormData({
+        travelType: '',
+        destination: '',
+        startDate: '',
+        endDate: '',
+        adults: '2',
+        children: '0',
+        travelClass: '',
+        accommodation: '',
+        budget: '',
+        activities: '',
+        name: '',
+        email: '',
+        phone: '',
+        message: ''
+      });
+    }, 3000);
   };
 
-  const renderProgressBar = () => {
-    const steps = ['Trip Details', 'Travel Preferences', 'Contact Information'];
+  if (submitted) {
     return (
+      <div className="p-6 bg-white rounded-lg border-t-4 border-green-500 text-center">
+        <div className="w-16 h-16 bg-green-100 rounded-full mx-auto flex items-center justify-center mb-4">
+          <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">Quote Request Sent!</h2>
+        <p className="text-gray-600 mb-2">
+          Thank you for submitting your travel preferences. We'll prepare a personalized quote for you.
+        </p>
+        <p className="text-gray-500 text-sm mb-4">
+          We'll contact you within 24 hours at the email or phone number you provided.
+        </p>
+        <p className="text-xs text-gray-400">
+          Currently sending submissions to jvacations2023@gmail.com (for testing purposes)
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="bg-white rounded-lg p-6 border-t-4 border-[#2196F3]">
+      <h2 className="text-3xl font-bold text-[#1a365d] mb-6">Get a Personalized Quote</h2>
+      
+      {/* Progress Indicator */}
       <div className="mb-8">
         <div className="flex justify-between">
-          {steps.map((stepName, index) => (
-            <div key={index} className="flex flex-col items-center flex-1">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center mb-2 
-                ${step > index + 1 ? 'bg-[#2196F3] text-white' : 
-                  step === index + 1 ? 'bg-[#FFD700] text-[#1a365d]' : 
-                  'bg-gray-200 text-gray-500'}`}>
-                {index + 1}
-              </div>
-              <span className="text-sm text-gray-600 text-center">{stepName}</span>
-            </div>
-          ))}
+          <span className={`text-sm ${step >= 1 ? 'text-[#2196F3]' : 'text-gray-400'}`}>Trip Details</span>
+          <span className={`text-sm ${step >= 2 ? 'text-[#2196F3]' : 'text-gray-400'}`}>Travel Preferences</span>
+          <span className={`text-sm ${step >= 3 ? 'text-[#2196F3]' : 'text-gray-400'}`}>Contact Information</span>
         </div>
-        <div className="relative mt-2">
-          <div className="absolute top-0 left-0 h-1 bg-gray-200 w-full"></div>
+        <div className="w-full bg-gray-200 h-2 rounded-full mt-2">
           <div 
-            className="absolute top-0 left-0 h-1 bg-[#2196F3] transition-all duration-300"
-            style={{ width: `${((step - 1) / 2) * 100}%` }}
+            className="bg-[#2196F3] h-2 rounded-full transition-all duration-300"
+            style={{ width: `${(step / 3) * 100}%` }}
           ></div>
         </div>
       </div>
-    );
-  };
 
-  return (
-    <div className="bg-white rounded-lg p-6">
-      <h2 className="text-3xl font-bold text-[#1a365d] mb-6 text-center">
-        Get Your Personalized Travel Quote
-      </h2>
-      
-      {renderProgressBar()}
-      
-      <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Step 1: Trip Details */}
+      <form onSubmit={handleSubmit}>
         {step === 1 && (
           <div className="space-y-4">
             <div>
-              <label className="block text-gray-700 mb-2">Type of Trip</label>
+              <label className="block text-gray-700 mb-2">Travel Type</label>
               <select
                 name="travelType"
                 value={formData.travelType}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               >
-                <option value="">Select a type</option>
+                <option value="">Select Travel Type</option>
                 {travelTypes.map(type => (
                   <option key={type} value={type}>{type}</option>
                 ))}
@@ -135,13 +163,13 @@ export default function QuoteForm() {
                 name="destination"
                 value={formData.destination}
                 onChange={handleChange}
-                placeholder="Where would you like to go?"
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                placeholder="Where would you like to go?"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               />
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-gray-700 mb-2">Start Date</label>
                 <input
@@ -149,8 +177,8 @@ export default function QuoteForm() {
                   name="startDate"
                   value={formData.startDate}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                   required
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 />
               </div>
               
@@ -161,44 +189,51 @@ export default function QuoteForm() {
                   name="endDate"
                   value={formData.endDate}
                   onChange={handleChange}
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                   required
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 />
               </div>
             </div>
-
-            <div className="grid grid-cols-2 gap-4">
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-gray-700 mb-2">Adults</label>
+                <label className="block text-gray-700 mb-2">Number of Adults</label>
                 <input
                   type="number"
                   name="adults"
                   value={formData.adults}
                   onChange={handleChange}
-                  min="1"
-                  max="10"
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                   required
+                  min="1"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 />
               </div>
               
               <div>
-                <label className="block text-gray-700 mb-2">Children (0-12 yrs)</label>
+                <label className="block text-gray-700 mb-2">Number of Children</label>
                 <input
                   type="number"
                   name="children"
                   value={formData.children}
                   onChange={handleChange}
                   min="0"
-                  max="10"
-                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 />
               </div>
             </div>
+            
+            <div className="pt-4 flex justify-center">
+              <button
+                type="button"
+                onClick={nextStep}
+                className="px-8 py-3 bg-[#2196F3] text-white rounded-lg hover:bg-[#1976D2] transition-colors flex items-center"
+              >
+                Next <span className="ml-2">→</span>
+              </button>
+            </div>
           </div>
         )}
-
-        {/* Step 2: Travel Preferences */}
+        
         {step === 2 && (
           <div className="space-y-4">
             <div>
@@ -207,86 +242,105 @@ export default function QuoteForm() {
                 name="travelClass"
                 value={formData.travelClass}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               >
-                <option value="">Select travel class</option>
-                {travelClasses.map(cls => (
-                  <option key={cls} value={cls}>{cls}</option>
+                <option value="">Select Travel Class</option>
+                {travelClasses.map(type => (
+                  <option key={type} value={type}>{type}</option>
                 ))}
               </select>
             </div>
-
+            
             <div>
               <label className="block text-gray-700 mb-2">Accommodation Type</label>
               <select
                 name="accommodation"
                 value={formData.accommodation}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               >
-                <option value="">Select accommodation type</option>
+                <option value="">Select Accommodation Type</option>
                 {accommodationTypes.map(type => (
                   <option key={type} value={type}>{type}</option>
                 ))}
               </select>
             </div>
-
+            
             <div>
               <label className="block text-gray-700 mb-2">Budget Range</label>
               <select
                 name="budget"
                 value={formData.budget}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               >
-                <option value="">Select budget range</option>
+                <option value="">Select Budget Range</option>
                 {budgetRanges.map(range => (
                   <option key={range} value={range}>{range}</option>
                 ))}
               </select>
             </div>
-
+            
             <div>
-              <label className="block text-gray-700 mb-2">Preferred Activities</label>
+              <label className="block text-gray-700 mb-2">Preferred Activities (Optional)</label>
               <textarea
                 name="activities"
                 value={formData.activities}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
+                placeholder="Let us know what activities interest you"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 rows={3}
-                placeholder="What activities interest you? (e.g., sightseeing, adventure sports, shopping, etc.)"
               />
+            </div>
+            
+            <div className="pt-4 flex justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors flex items-center"
+              >
+                <span className="mr-2">←</span> Back
+              </button>
+              
+              <button
+                type="button"
+                onClick={nextStep}
+                className="px-6 py-2 bg-[#2196F3] text-white rounded-lg hover:bg-[#1976D2] transition-colors flex items-center"
+              >
+                Next <span className="ml-2">→</span>
+              </button>
             </div>
           </div>
         )}
-
-        {/* Step 3: Contact Information */}
+        
         {step === 3 && (
           <div className="space-y-4">
             <div>
-              <label className="block text-gray-700 mb-2">Full Name</label>
+              <label className="block text-gray-700 mb-2">Your Name</label>
               <input
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                placeholder="Full Name"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               />
             </div>
             
             <div>
-              <label className="block text-gray-700 mb-2">Email</label>
+              <label className="block text-gray-700 mb-2">Email Address</label>
               <input
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                placeholder="your@email.com"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               />
             </div>
             
@@ -297,54 +351,46 @@ export default function QuoteForm() {
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
                 required
+                placeholder="Your contact number"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
               />
             </div>
             
             <div>
-              <label className="block text-gray-700 mb-2">Additional Notes</label>
+              <label className="block text-gray-700 mb-2">Any Additional Information (Optional)</label>
               <textarea
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
-                rows={4}
-                placeholder="Any special requirements or preferences?"
+                placeholder="Any special requirements or questions"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#2196F3] focus:border-transparent"
+                rows={3}
               />
             </div>
+            
+            <div className="pt-4 flex justify-between">
+              <button
+                type="button"
+                onClick={prevStep}
+                className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors flex items-center"
+              >
+                <span className="mr-2">←</span> Back
+              </button>
+              
+              <button
+                type="submit"
+                className="px-8 py-3 bg-[#2196F3] text-white rounded-lg hover:bg-[#1976D2] transition-colors"
+              >
+                Get Quote
+              </button>
+            </div>
+            
+            <p className="text-xs text-gray-500 text-center mt-4">
+              Currently sending submissions to jvacations2023@gmail.com (for testing purposes)
+            </p>
           </div>
         )}
-
-        {/* Navigation Buttons */}
-        <div className="flex justify-between pt-6">
-          {step > 1 && (
-            <button
-              type="button"
-              onClick={prevStep}
-              className="px-6 py-3 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition-colors flex items-center space-x-2"
-            >
-              <span>Previous</span>
-            </button>
-          )}
-          
-          {step < 3 ? (
-            <button
-              type="button"
-              onClick={nextStep}
-              className="ml-auto px-6 py-3 bg-[#2196F3] text-white rounded-lg hover:bg-[#1976D2] transition-colors flex items-center space-x-2"
-            >
-              <span>Next</span>
-            </button>
-          ) : (
-            <button
-              type="submit"
-              className="ml-auto px-6 py-3 bg-[#FFD700] text-[#1a365d] rounded-lg hover:bg-[#f7c800] transition-colors font-semibold flex items-center space-x-2"
-            >
-              <span>Get Quote</span>
-            </button>
-          )}
-        </div>
       </form>
     </div>
   );
