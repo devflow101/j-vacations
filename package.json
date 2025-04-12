@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "netlify-build": "node build.js",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "echo 'Skipping postinstall script'"
   },
   "dependencies": {
     "framer-motion": "^12.6.5",
