@@ -45,7 +45,7 @@ export default function CallbackRequest({ isOpen, onClose }: CallbackRequestProp
               type="text"
               id="name"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2196F3] focus:ring-[#2196F3]"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-[#2196F3] focus:ring focus:ring-[#2196F3] focus:ring-opacity-50"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             />
@@ -57,7 +57,7 @@ export default function CallbackRequest({ isOpen, onClose }: CallbackRequestProp
               type="tel"
               id="phone"
               required
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2196F3] focus:ring-[#2196F3]"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-[#2196F3] focus:ring focus:ring-[#2196F3] focus:ring-opacity-50"
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
             />
@@ -67,7 +67,7 @@ export default function CallbackRequest({ isOpen, onClose }: CallbackRequestProp
             <label htmlFor="preferredTime" className="block text-sm font-medium text-gray-700">Best Time to Call</label>
             <select
               id="preferredTime"
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2196F3] focus:ring-[#2196F3]"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-[#2196F3] focus:ring focus:ring-[#2196F3] focus:ring-opacity-50"
               value={formData.preferredTime}
               onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
             >
@@ -82,7 +82,7 @@ export default function CallbackRequest({ isOpen, onClose }: CallbackRequestProp
             <textarea
               id="message"
               rows={3}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2196F3] focus:ring-[#2196F3]"
+              className="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-[#2196F3] focus:ring focus:ring-[#2196F3] focus:ring-opacity-50"
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
             />
